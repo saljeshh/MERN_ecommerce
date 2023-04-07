@@ -15,6 +15,9 @@ exports.createProduct = async (req,res,next)=>{
 }
 */
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+  //for which admin made this post
+  req.body.user = req.user.id;
+
   const product = await Product.create(req.body);
 
   res.status(201).json({
